@@ -1,6 +1,7 @@
 var express         = require('express');
 var path            = require('path');
 var log             = require('./libs/log')(module);
+var config          = require('./libs/config');
 var app = express();
 
 app.use(express.logger('dev'));
@@ -44,6 +45,6 @@ app.use(function(err, req, res, next){
     return;
 });
 
-app.listen(8080, function(){ //plz edit this
-    log.info('Express server listening on port 8080');
+app.listen(config.get('port'), function(){
+    log.info('Express server listening on port ' + config.get('port'));
 });
